@@ -28,5 +28,6 @@ internal class CreateBookUseCaseImplTest{
 
         val actual = createBookUseCaseImpl.execute(book)
         assertNotNull(actual)
+        assertEquals(book, actual)
     }
 }
