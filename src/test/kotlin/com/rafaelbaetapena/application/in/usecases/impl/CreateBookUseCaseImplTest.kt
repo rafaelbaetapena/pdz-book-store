@@ -10,9 +10,14 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
+import org.slf4j.LoggerFactory
 
 @ExtendWith(MockitoExtension::class)
-internal class CreateBookUseCaseImplTest{
+internal class CreateBookUseCaseImplTest {
+
+    companion object{
+        private val log = LoggerFactory.getLogger(CreateBookUseCaseImplTest::class.java)
+    }
 
     @Mock
     lateinit var createBookPort: CreateBookPort
@@ -29,5 +34,7 @@ internal class CreateBookUseCaseImplTest{
         val actual = createBookUseCaseImpl.execute(book)
         assertNotNull(actual)
         assertEquals(book, actual)
+        assertNotNull(actual.id)
+        log.info("Book created: $actual")
     }
 }

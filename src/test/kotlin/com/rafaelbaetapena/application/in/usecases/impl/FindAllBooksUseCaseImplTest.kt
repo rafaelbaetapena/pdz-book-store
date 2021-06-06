@@ -11,9 +11,15 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
+import org.slf4j.LoggerFactory
+import java.util.*
 
 @ExtendWith(MockitoExtension::class)
 internal class FindAllBooksUseCaseImplTest {
+
+    companion object{
+        private val log = LoggerFactory.getLogger(FindAllBooksUseCaseImplTest::class.java)
+    }
 
     @Mock
     lateinit var findAllBooksPort: FindAllBooksPort
@@ -26,7 +32,8 @@ internal class FindAllBooksUseCaseImplTest {
 
         val filters = BookFilter(name = "O Hobbit", publisher = "HarperCollins")
         val books = listOf(
-                Book("O Hobbit", "J.R.R. Tolkien", "HarperCollins", 336, BookCategory.FANTASY)
+                Book(UUID.fromString("f680eba8-d0ab-4a95-8ec7-ee6ed4716606"),"O Hobbit",
+                        "J.R.R. Tolkien", "HarperCollins", 336, BookCategory.FANTASY)
         )
         Mockito.`when`(findAllBooksPort.execute(filters)).thenReturn(books)
 
@@ -34,5 +41,6 @@ internal class FindAllBooksUseCaseImplTest {
         assertNotNull(actual)
         assertFalse(actual.isEmpty())
         assertEquals(1, actual.size)
+        log.info("Returned books: $actual")
     }
 }
