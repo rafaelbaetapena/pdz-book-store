@@ -1,6 +1,6 @@
 package com.rafaelbaetapena.application.`in`.domain
 
-class Book(
+data class Book(
         val name: String,
         val author: String,
         val publisher: String,
