@@ -34,6 +34,8 @@ dependencies {
 
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
+    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.11.0'
+    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.11.0'
 }
 
 
