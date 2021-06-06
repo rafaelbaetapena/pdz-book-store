@@ -4,6 +4,6 @@ class Book(
         val name: String,
         val author: String,
         val publisher: String,
-        val numberOfPages: Integer,
+        val numberOfPages: Int,
         val category: BookCategory
 )
