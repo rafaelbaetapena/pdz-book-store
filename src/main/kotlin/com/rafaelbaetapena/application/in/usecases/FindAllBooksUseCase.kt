@@ -1,7 +1,7 @@
 package com.rafaelbaetapena.application.`in`.usecases
 
-import com.rafaelbaetapena.application.`in`.domain.Book
-import com.rafaelbaetapena.application.`in`.domain.BookFilter
+import com.rafaelbaetapena.application.domain.Book
+import com.rafaelbaetapena.application.domain.BookFilter
 
 interface FindAllBooksUseCase {
 

@@ -1,6 +1,6 @@
 package com.rafaelbaetapena.application.out.port
 
-import com.rafaelbaetapena.application.`in`.domain.Book
+import com.rafaelbaetapena.application.domain.Book
 import java.util.*
 
 interface FindBookByIdPort {

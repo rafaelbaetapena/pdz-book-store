@@ -1,6 +1,6 @@
 package com.rafaelbaetapena.application.`in`.usecases
 
-import com.rafaelbaetapena.application.`in`.domain.Book
+import com.rafaelbaetapena.application.domain.Book
 
 interface CreateBookUseCase {
 

@@ -1,4 +1,4 @@
-package com.rafaelbaetapena.application.`in`.domain
+package com.rafaelbaetapena.application.domain
 
 enum class BookCategory {
     FANTASY,
