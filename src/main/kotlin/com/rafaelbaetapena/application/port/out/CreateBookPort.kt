@@ -1,4 +1,4 @@
-package com.rafaelbaetapena.application.out.port
+package com.rafaelbaetapena.application.port.out
 
 import com.rafaelbaetapena.application.domain.Book
 
