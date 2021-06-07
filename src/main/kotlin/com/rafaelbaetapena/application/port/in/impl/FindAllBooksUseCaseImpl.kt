@@ -1,8 +1,8 @@
-package com.rafaelbaetapena.application.`in`.usecases.impl
+package com.rafaelbaetapena.application.port.`in`.impl
 
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookFilter
-import com.rafaelbaetapena.application.`in`.usecases.FindAllBooksUseCase
+import com.rafaelbaetapena.application.port.`in`.FindAllBooksUseCase
 import com.rafaelbaetapena.application.port.out.FindAllBooksPort
 import javax.inject.Singleton
 

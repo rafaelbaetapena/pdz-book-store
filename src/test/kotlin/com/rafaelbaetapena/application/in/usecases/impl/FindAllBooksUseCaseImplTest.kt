@@ -3,6 +3,7 @@ package com.rafaelbaetapena.application.`in`.usecases.impl
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.domain.BookFilter
+import com.rafaelbaetapena.application.port.`in`.impl.FindAllBooksUseCaseImpl
 import com.rafaelbaetapena.application.port.out.FindAllBooksPort
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

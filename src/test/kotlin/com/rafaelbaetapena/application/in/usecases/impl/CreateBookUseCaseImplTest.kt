@@ -2,6 +2,7 @@ package com.rafaelbaetapena.application.`in`.usecases.impl
 
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
+import com.rafaelbaetapena.application.port.`in`.impl.CreateBookUseCaseImpl
 import com.rafaelbaetapena.application.port.out.CreateBookPort
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test

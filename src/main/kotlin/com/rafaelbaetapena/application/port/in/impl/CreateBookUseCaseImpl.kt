@@ -1,7 +1,7 @@
-package com.rafaelbaetapena.application.`in`.usecases.impl
+package com.rafaelbaetapena.application.port.`in`.impl
 
 import com.rafaelbaetapena.application.domain.Book
-import com.rafaelbaetapena.application.`in`.usecases.CreateBookUseCase
+import com.rafaelbaetapena.application.port.`in`.CreateBookUseCase
 import com.rafaelbaetapena.application.port.out.CreateBookPort
 import javax.inject.Singleton
 
