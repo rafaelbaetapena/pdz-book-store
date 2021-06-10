@@ -32,8 +32,14 @@ internal class FindBookByIdUseCaseImplTest{
     fun `given an existing book id then the book data should be returning`() {
 
         val id = UUID.fromString("f680eba8-d0ab-4a95-8ec7-ee6ed4716606")
-        val book = Book(id,"O Hobbit",
-                "J.R.R. Tolkien", "HarperCollins", 336, BookCategory.FANTASY)
+        val book = Book(
+                    id = id,
+                    name = "The Hobbit",
+                    author = "J.R.R. Tolkien",
+                    publisher = "HarperCollins Publishers",
+                    numberOfPages = 400,
+                    category = BookCategory.FANTASY)
+
         Mockito.`when`(findBookByIdPort.execute(id)).thenReturn(book)
 
         val actual = findBookByIdUseCaseImpl.execute(id)

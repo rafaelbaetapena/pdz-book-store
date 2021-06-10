@@ -33,8 +33,13 @@ internal class FindAllBooksUseCaseImplTest {
 
         val filters = BookFilter(name = "O Hobbit", publisher = "HarperCollins")
         val books = listOf(
-                Book(UUID.fromString("f680eba8-d0ab-4a95-8ec7-ee6ed4716606"),"O Hobbit",
-                        "J.R.R. Tolkien", "HarperCollins", 336, BookCategory.FANTASY)
+                Book(
+                    id = UUID.fromString("f680eba8-d0ab-4a95-8ec7-ee6ed4716606"),
+                    name = "The Hobbit",
+                    author = "J.R.R. Tolkien",
+                    publisher = "HarperCollins Publishers",
+                    numberOfPages = 400,
+                    category = BookCategory.FANTASY)
         )
         Mockito.`when`(findAllBooksPort.execute(filters)).thenReturn(books)
 

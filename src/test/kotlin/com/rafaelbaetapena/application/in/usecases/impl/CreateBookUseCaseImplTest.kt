@@ -29,7 +29,12 @@ internal class CreateBookUseCaseImplTest {
     @Test
     fun `given a new book when the user enters all the book data correctly then the book is successfully registered`() {
 
-        val book = Book("O Hobbit", "J.R.R. Tolkien", "HarperCollins", 336, BookCategory.FANTASY)
+        val book = Book(
+                name = "The Hobbit",
+                author = "J.R.R. Tolkien",
+                publisher = "HarperCollins Publishers",
+                numberOfPages = 400,
+                category = BookCategory.FANTASY)
         Mockito.`when`(createBookPort.execute(book)).thenReturn(book)
 
         val actual = createBookUseCaseImpl.execute(book)
