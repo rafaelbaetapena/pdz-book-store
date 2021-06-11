@@ -1,3 +1,7 @@
 micronaut:
   application:
     name: bookStore
+
+# jackson config
+jackson:
+  property-naming-strategy: SNAKE_CASE
