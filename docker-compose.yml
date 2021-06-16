@@ -9,10 +9,17 @@ services:
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DB=pdz_book_store
+      - POSTGRES_DB=pdz-book-store
+    volumes:
+      - pdz-book-store-data-local:/var/lib/postgresql/data
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 15432:8080
+
+# permanent storage of data.
+# > docker volume rm postgres_pdz-book-store-data-local
+volumes:
+  pdz-book-store-data-local:
