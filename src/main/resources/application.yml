@@ -5,3 +5,15 @@ micronaut:
 # jackson config
 jackson:
   property-naming-strategy: SNAKE_CASE
+
+# flyway
+flyway:
+  datasources:
+    default:
+      enabled: true
+      clean-schema: false
+      url: ${PG_JDBC_URL:`jdbc:postgresql://127.0.0.1:5432/pdz-book-store`}
+      user: ${PG_USERNAME:admin}
+      password: ${PG_PASSWORD:admin} # secret
+      schemas: pdz
+      default-schema: pdz
