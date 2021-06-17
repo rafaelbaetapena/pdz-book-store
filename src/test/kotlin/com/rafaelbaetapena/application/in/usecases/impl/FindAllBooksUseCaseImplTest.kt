@@ -4,7 +4,7 @@ import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.domain.BookFilter
 import com.rafaelbaetapena.application.port.`in`.impl.FindAllBooksUseCaseImpl
-import com.rafaelbaetapena.application.port.out.FindAllBooksPort
+import com.rafaelbaetapena.application.port.out.FindAllBooksAdapter
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -23,7 +23,7 @@ internal class FindAllBooksUseCaseImplTest {
     }
 
     @Mock
-    lateinit var findAllBooksPort: FindAllBooksPort
+    lateinit var findAllBooksAdapter: FindAllBooksAdapter
 
     @InjectMocks
     lateinit var findAllBooksUseCaseImpl: FindAllBooksUseCaseImpl
@@ -41,7 +41,7 @@ internal class FindAllBooksUseCaseImplTest {
                     numberOfPages = 400,
                     category = BookCategory.FANTASY)
         )
-        Mockito.`when`(findAllBooksPort.execute(filters)).thenReturn(books)
+        Mockito.`when`(findAllBooksAdapter.execute(filters)).thenReturn(books)
 
         val actual = findAllBooksUseCaseImpl.execute(filters)
         assertNotNull(actual)
