@@ -3,10 +3,7 @@ package com.rafaelbaetapena.adapters.out.persistence.v1.entities
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
 import java.util.*
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 
 @Entity(name = "book")
 @Table(name = "books", schema = "pdz")
@@ -18,6 +15,7 @@ data class BookEntity(
         val publisher: String,
         @Column(name = "number_of_pages")
         val numberOfPages: Int,
+        @Enumerated(EnumType.STRING)
         val category: BookCategory
 ) {
     constructor(
