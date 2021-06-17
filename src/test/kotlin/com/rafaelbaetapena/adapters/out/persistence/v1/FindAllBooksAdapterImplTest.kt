@@ -2,7 +2,6 @@ package com.rafaelbaetapena.adapters.out.persistence.v1
 
 import com.rafaelbaetapena.adapters.out.persistence.v1.entities.BookEntity
 import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookRepository
-import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.domain.BookFilter
 import org.junit.jupiter.api.Assertions.*
@@ -10,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.whenever
 import org.slf4j.LoggerFactory
