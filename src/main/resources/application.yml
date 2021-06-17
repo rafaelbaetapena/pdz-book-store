@@ -17,3 +17,12 @@ flyway:
       password: ${PG_PASSWORD:admin} # secret
       schemas: pdz
       default-schema: pdz
+
+# micronaut-data-jpa
+jpa:
+  default:
+    packages-to-scan:
+      - "com.rafaelbaetapena.adapters.out.persistence.v1.entities"
+    properties:
+      hibernate:
+        show_sql: true
