@@ -15,11 +15,12 @@ class FindAllBooksAdapterImpl(
 
         log.info("$CLASS_NAME starting find all books")
 
-        val allBooks = bookRepository.findByFilters(filters).map { it.toDomain() }
+        val books = bookRepository.findByFilters(filters)
+                .map { it.toDomain() }
 
         log.info("$CLASS_NAME finalized find all books")
 
-        return  allBooks
+        return books
     }
     companion object {
         private val log: Logger = LoggerFactory.getLogger(FindAllBooksAdapterImpl::class.java)
