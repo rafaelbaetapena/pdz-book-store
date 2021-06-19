@@ -4,7 +4,7 @@ import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
 import java.util.*
 
-class CreateBookResponse(
+data class CreateBookResponse(
         val id: UUID,
         val name: String,
         val author: String,
