@@ -32,15 +32,15 @@ abstract class BookRepository(private val entityManager: EntityManager) :
         val query = entityManager.createQuery(getQlStringFindByFilters(filters), BookEntity::class.java)
 
         if (!filters.name.isNullOrEmpty()) {
-            query.setParameter("name", filters.name)
+            query.setParameter("name", "%${filters.name}%")
         }
 
         if (!filters.author.isNullOrEmpty()) {
-            query.setParameter("author", filters.author)
+            query.setParameter("author", "%${filters.author}%")
         }
 
         if (!filters.publisher.isNullOrEmpty()) {
-            query.setParameter("publisher", filters.publisher)
+            query.setParameter("publisher", "%${filters.publisher}%")
         }
 
         if (filters.category != null) {
@@ -54,15 +54,15 @@ abstract class BookRepository(private val entityManager: EntityManager) :
         var qlString = "FROM books AS boo WHERE 1 = 1"
 
         if(!filters.name.isNullOrEmpty()){
-            qlString = "$qlString  and boo.name = :name"
+            qlString = "$qlString  and boo.name like :name"
         }
 
         if(!filters.author.isNullOrEmpty()){
-            qlString = "$qlString  and boo.author = :author"
+            qlString = "$qlString  and boo.author like :author"
         }
 
         if(!filters.publisher.isNullOrEmpty()){
-            qlString = "$qlString  and boo.publisher = :publisher"
+            qlString = "$qlString  and boo.publisher like :publisher"
         }
 
         if(filters.category != null){
