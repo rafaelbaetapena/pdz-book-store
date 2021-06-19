@@ -7,7 +7,6 @@ import com.rafaelbaetapena.adapters.`in`.web.v1.responses.FindAllBooksResponse
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.port.`in`.CreateBookUseCase
 import com.rafaelbaetapena.application.port.`in`.FindAllBooksUseCase
-import io.micronaut.data.annotation.Query
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.*
 import org.slf4j.Logger

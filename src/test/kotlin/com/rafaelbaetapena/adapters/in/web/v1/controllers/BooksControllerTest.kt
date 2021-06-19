@@ -1,9 +1,7 @@
 package com.rafaelbaetapena.adapters.`in`.web.v1.controllers
 
 import com.rafaelbaetapena.adapters.`in`.web.v1.requests.CreateBookRequest
-import com.rafaelbaetapena.adapters.`in`.web.v1.requests.FindAllBooksRequest
 import com.rafaelbaetapena.adapters.`in`.web.v1.responses.CreateBookResponse
-import com.rafaelbaetapena.adapters.`in`.web.v1.responses.FindAllBooksResponse
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.port.`in`.CreateBookUseCase
@@ -19,7 +17,6 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 import org.slf4j.LoggerFactory
-import java.util.*
 
 @ExtendWith(MockitoExtension::class)
 internal class BooksControllerTest {
