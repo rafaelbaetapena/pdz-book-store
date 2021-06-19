@@ -3,7 +3,7 @@ package com.rafaelbaetapena.application.port.out
 import com.rafaelbaetapena.application.domain.Book
 import java.util.*
 
-interface FindBookByIdPort {
+interface FindBookByIdAdapter {
 
     fun execute(id: UUID): Book?
 }

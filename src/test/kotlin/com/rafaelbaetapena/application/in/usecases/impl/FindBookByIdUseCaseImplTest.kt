@@ -4,14 +4,14 @@ import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.exceptions.FindBookByIdException
 import com.rafaelbaetapena.application.port.`in`.impl.FindBookByIdUseCaseImpl
-import com.rafaelbaetapena.application.port.out.FindBookByIdPort
+import com.rafaelbaetapena.application.port.out.FindBookByIdAdapter
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.whenever
 import org.slf4j.LoggerFactory
 import java.util.*
 
@@ -23,7 +23,7 @@ internal class FindBookByIdUseCaseImplTest{
     }
 
     @Mock
-    lateinit var findBookByIdPort: FindBookByIdPort
+    lateinit var findBookByIdAdapter: FindBookByIdAdapter
 
     @InjectMocks
     lateinit var findBookByIdUseCaseImpl: FindBookByIdUseCaseImpl
@@ -40,7 +40,7 @@ internal class FindBookByIdUseCaseImplTest{
                     numberOfPages = 400,
                     category = BookCategory.FANTASY)
 
-        Mockito.`when`(findBookByIdPort.execute(id)).thenReturn(book)
+        whenever(findBookByIdAdapter.execute(id)).thenReturn(book)
 
         val actual = findBookByIdUseCaseImpl.execute(id)
         assertNotNull(actual)
@@ -52,7 +52,7 @@ internal class FindBookByIdUseCaseImplTest{
     fun `given a non-existent book id then it should return an exception`() {
 
         val id = UUID.fromString("f680eba8-d0ab-4a95-8ec7-ee6ed4716606")
-        Mockito.`when`(findBookByIdPort.execute(id)).thenReturn(null)
+        whenever(findBookByIdAdapter.execute(id)).thenReturn(null)
 
         val assertThrows = assertThrows(FindBookByIdException::class.java) { findBookByIdUseCaseImpl.execute(id) }
         log.info("Returned book: $assertThrows")
