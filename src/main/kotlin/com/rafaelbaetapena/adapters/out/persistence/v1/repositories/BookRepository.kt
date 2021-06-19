@@ -69,6 +69,8 @@ abstract class BookRepository(private val entityManager: EntityManager) :
             qlString = "$qlString  and boo.category = :category"
         }
 
+        log.info("$CLASS_NAME qlString created: $qlString")
+
         return qlString
     }
 
