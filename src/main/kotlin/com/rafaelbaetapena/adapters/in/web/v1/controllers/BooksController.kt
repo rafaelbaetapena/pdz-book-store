@@ -4,18 +4,22 @@ import com.rafaelbaetapena.adapters.`in`.web.v1.requests.CreateBookRequest
 import com.rafaelbaetapena.adapters.`in`.web.v1.requests.FindAllBooksRequest
 import com.rafaelbaetapena.adapters.`in`.web.v1.responses.CreateBookResponse
 import com.rafaelbaetapena.adapters.`in`.web.v1.responses.FindAllBooksResponse
+import com.rafaelbaetapena.adapters.`in`.web.v1.responses.FindBookByIdResponse
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.port.`in`.CreateBookUseCase
 import com.rafaelbaetapena.application.port.`in`.FindAllBooksUseCase
+import com.rafaelbaetapena.application.port.`in`.FindBookByIdUseCase
 import io.micronaut.http.HttpResponse
 import io.micronaut.http.annotation.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.util.*
 
 @Controller("/v1/books")
 class BooksController(
         private val createBookUseCase: CreateBookUseCase,
-        private val findAllBooksUseCase: FindAllBooksUseCase
+        private val findAllBooksUseCase: FindAllBooksUseCase,
+        private val findBookByIdUseCase: FindBookByIdUseCase
 ) {
 
     @Post
@@ -31,7 +35,7 @@ class BooksController(
     }
 
     @Get("{?name,author,publisher,category}")
-    fun findAllBooks(
+    fun findAll(
             @QueryValue name: String?,
             @QueryValue author: String?,
             @QueryValue publisher: String?,
@@ -51,6 +55,18 @@ class BooksController(
         log.info("$CLASS_NAME finalized find all books")
 
         return HttpResponse.ok(FindAllBooksResponse(books))
+    }
+
+    @Get("/{book_id}")
+    fun findById(@PathVariable("book_id") bookId: UUID): HttpResponse<FindBookByIdResponse> {
+
+        log.info("$CLASS_NAME starting find book by id")
+
+        val book = findBookByIdUseCase.execute(bookId)
+
+        log.info("$CLASS_NAME finalized find book by id")
+
+        return HttpResponse.ok(FindBookByIdResponse(book))
     }
 
     companion object {

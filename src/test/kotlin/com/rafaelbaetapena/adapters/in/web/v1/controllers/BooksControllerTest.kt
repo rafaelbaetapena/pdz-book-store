@@ -4,8 +4,10 @@ import com.rafaelbaetapena.adapters.`in`.web.v1.requests.CreateBookRequest
 import com.rafaelbaetapena.adapters.`in`.web.v1.responses.CreateBookResponse
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
+import com.rafaelbaetapena.application.exceptions.FindBookByIdException
 import com.rafaelbaetapena.application.port.`in`.CreateBookUseCase
 import com.rafaelbaetapena.application.port.`in`.FindAllBooksUseCase
+import com.rafaelbaetapena.application.port.`in`.FindBookByIdUseCase
 import io.micronaut.http.HttpStatus
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
@@ -17,6 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.any
 import org.mockito.kotlin.whenever
 import org.slf4j.LoggerFactory
+import java.util.*
 
 @ExtendWith(MockitoExtension::class)
 internal class BooksControllerTest {
@@ -30,6 +33,9 @@ internal class BooksControllerTest {
 
     @Mock
     lateinit var findAllBooksUseCase: FindAllBooksUseCase
+
+    @Mock
+    lateinit var findBookByIdUseCase: FindBookByIdUseCase
 
     @InjectMocks
     lateinit var booksController: BooksController
@@ -70,7 +76,7 @@ internal class BooksControllerTest {
         whenever(findAllBooksUseCase.execute(any()))
                 .thenReturn(listOf(book))
 
-        val actual = booksController.findAllBooks(
+        val actual = booksController.findAll(
                 name = "The Hobbit",
                 author = "J.R.R. Tolkien",
                 publisher = "HarperCollins Publishers",
@@ -81,6 +87,38 @@ internal class BooksControllerTest {
         assertNotNull(actual.body())
         assertNotNull(actual.body()?.books)
         assertFalse(actual.body()?.books!!.isEmpty())
+        log.info("Book found: $actual")
+    }
+
+    @Test
+    fun `given an existing book id then the book data should be returning`() {
+
+        val book = Book(
+                name = "The Hobbit",
+                author = "J.R.R. Tolkien",
+                publisher = "HarperCollins Publishers",
+                numberOfPages = 400,
+                category = BookCategory.FANTASY)
+        whenever(findBookByIdUseCase.execute(any()))
+                .thenReturn(book)
+
+        val actual = booksController.findById(bookId = book.id)
+        assertNotNull(actual)
+        assertEquals(HttpStatus.OK, actual.status)
+        assertNotNull(actual.body())
+        log.info("Book found: $actual")
+    }
+
+    @Test
+    fun `given a non-existent book id then it should return an exception`() {
+
+        whenever(findBookByIdUseCase.execute(any()))
+                .thenThrow(FindBookByIdException::class.java)
+
+        val actual = booksController.findById(bookId = UUID.randomUUID())
+        assertNotNull(actual)
+        assertEquals(HttpStatus.NOT_FOUND, actual.status)
+        assertNotNull(actual.body())
         log.info("Book found: $actual")
     }
 }
