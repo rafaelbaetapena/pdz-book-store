@@ -5,7 +5,7 @@ import com.rafaelbaetapena.application.domain.BookCategory
 import java.util.*
 import javax.persistence.*
 
-@Entity(name = "book")
+@Entity(name = "books")
 @Table(name = "books", schema = "pdz")
 data class BookEntity(
         @Id
