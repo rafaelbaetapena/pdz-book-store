@@ -4,23 +4,31 @@ import com.rafaelbaetapena.adapters.out.persistence.v1.entities.BookEntity
 import com.rafaelbaetapena.application.domain.BookFilter
 import io.micronaut.data.annotation.Repository
 import io.micronaut.data.repository.CrudRepository
+import io.micronaut.transaction.annotation.ReadOnly
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.util.*
 import javax.persistence.EntityManager
-import javax.persistence.Parameter
 import javax.persistence.TypedQuery
-import kotlin.collections.ArrayList
 
 @Repository
 abstract class BookRepository(private val entityManager: EntityManager) :
         CrudRepository<BookEntity, UUID> {
 
+    @ReadOnly
     fun findByFilters(filters: BookFilter): List<BookEntity> {
-        val query = getQueryFindByFilters(filters)
 
-        return query.resultList
+        log.info("$CLASS_NAME starting find all books")
+
+        val books = getQueryFindByFilters(filters).resultList
+
+        log.info("$CLASS_NAME finalized find all books")
+
+        return books
     }
 
     private fun getQueryFindByFilters(filters: BookFilter): TypedQuery<BookEntity> {
+
         val query = entityManager.createQuery(getQlStringFindByFilters(filters), BookEntity::class.java)
 
         if (!filters.name.isNullOrEmpty()) {
@@ -62,5 +70,10 @@ abstract class BookRepository(private val entityManager: EntityManager) :
         }
 
         return qlString
+    }
+
+    companion object {
+        private val log: Logger = LoggerFactory.getLogger(BookRepository::class.java)
+        private val CLASS_NAME = "[${BookRepository::class.java}]"
     }
 }
