@@ -1,7 +1,7 @@
 package com.rafaelbaetapena.application.port.out
 
-import java.util.*
+import com.rafaelbaetapena.application.domain.Book
 
 interface DeleteBookByIdAdapter {
-    fun execute(bookId: UUID)
+    fun execute(book: Book)
 }

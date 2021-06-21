@@ -45,7 +45,7 @@ internal class DeleteBookByIdUseCaseImplTest {
 
         whenever(findBookByIdUseCase.execute(id)).thenReturn(book)
 
-        doNothing().whenever(deleteBookByIdAdapter).execute(id)
+        doNothing().whenever(deleteBookByIdAdapter).execute(book)
 
         deleteBookByIdUseCaseImpl.execute(id)
         log.info("Deleted book: $id")

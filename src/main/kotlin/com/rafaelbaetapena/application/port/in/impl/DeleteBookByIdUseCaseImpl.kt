@@ -14,6 +14,6 @@ class DeleteBookByIdUseCaseImpl(
 
     override fun execute(bookId: UUID) {
         val book = findBookByIdUseCase.execute(bookId)
-        deleteBookByIdAdapter.execute(book.id)
+        deleteBookByIdAdapter.execute(book)
     }
 }
