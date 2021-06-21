@@ -108,17 +108,4 @@ internal class BooksControllerTest {
         assertNotNull(actual.body())
         log.info("Book found: $actual")
     }
-
-    @Test
-    fun `given a non-existent book id then it should return an exception`() {
-
-        whenever(findBookByIdUseCase.execute(any()))
-                .thenThrow(FindBookByIdException::class.java)
-
-        val actual = booksController.findById(bookId = UUID.randomUUID())
-        assertNotNull(actual)
-        assertEquals(HttpStatus.NOT_FOUND, actual.status)
-        assertNotNull(actual.body())
-        log.info("Book found: $actual")
-    }
 }
