@@ -1,9 +1,8 @@
-package com.rafaelbaetapena.application.`in`.usecases.impl
+package com.rafaelbaetapena.application.port.`in`.impl
 
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.exceptions.FindBookByIdException
-import com.rafaelbaetapena.application.port.`in`.impl.FindBookByIdUseCaseImpl
 import com.rafaelbaetapena.application.port.out.FindBookByIdAdapter
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
