@@ -19,6 +19,11 @@ services:
     ports:
       - 15432:8080
 
+  redis:
+    image: redis:6-alpine
+    ports:
+      - 6379:6379
+
 # permanent storage of data.
 # > docker volume rm postgres_pdz-book-store-data-local
 volumes:
