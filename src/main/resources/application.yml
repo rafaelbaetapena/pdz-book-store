@@ -36,3 +36,12 @@ datasources:
     driver-class-name: org.postgresql.Driver
     schema-genenerate: NONE
     dialect: POSTGRES
+
+
+# redis
+redis:
+  uri: redis://localhost
+  ssl: false
+  timeout: 60s
+  io-thread-pool-size: 50
+  computation-thread-pool-size: 50
