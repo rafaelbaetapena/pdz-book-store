@@ -6,7 +6,9 @@ import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.port.out.DeleteBookByIdAdapter
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import javax.inject.Singleton
 
+@Singleton
 class DeleteBookByIdAdapterImpl(
         private val bookRepository: BookRepository
 ): DeleteBookByIdAdapter {
