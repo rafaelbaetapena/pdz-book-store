@@ -7,6 +7,7 @@ import com.rafaelbaetapena.adapters.`in`.web.v1.responses.FindAllBooksResponse
 import com.rafaelbaetapena.adapters.`in`.web.v1.responses.FindBookByIdResponse
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.port.`in`.CreateBookUseCase
+import com.rafaelbaetapena.application.port.`in`.DeleteBookByIdUseCase
 import com.rafaelbaetapena.application.port.`in`.FindAllBooksUseCase
 import com.rafaelbaetapena.application.port.`in`.FindBookByIdUseCase
 import io.micronaut.http.HttpResponse
@@ -19,7 +20,8 @@ import java.util.*
 class BooksController(
         private val createBookUseCase: CreateBookUseCase,
         private val findAllBooksUseCase: FindAllBooksUseCase,
-        private val findBookByIdUseCase: FindBookByIdUseCase
+        private val findBookByIdUseCase: FindBookByIdUseCase,
+        private val deleteBookByIdUseCase: DeleteBookByIdUseCase
 ) {
 
     @Post
@@ -67,6 +69,18 @@ class BooksController(
         log.info("$CLASS_NAME finalized find book by id")
 
         return HttpResponse.ok(FindBookByIdResponse(book))
+    }
+
+    @Delete("/{book_id}")
+    fun deleteById(@PathVariable("book_id") bookId: UUID): HttpResponse<String> {
+
+        log.info("$CLASS_NAME starting delete book by id")
+
+        deleteBookByIdUseCase.execute(bookId)
+
+        log.info("$CLASS_NAME finalized delete book by id")
+
+        return HttpResponse.noContent()
     }
 
     companion object {

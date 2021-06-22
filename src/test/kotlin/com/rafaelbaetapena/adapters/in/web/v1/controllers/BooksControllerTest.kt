@@ -4,8 +4,8 @@ import com.rafaelbaetapena.adapters.`in`.web.v1.requests.CreateBookRequest
 import com.rafaelbaetapena.adapters.`in`.web.v1.responses.CreateBookResponse
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookCategory
-import com.rafaelbaetapena.application.exceptions.FindBookByIdException
 import com.rafaelbaetapena.application.port.`in`.CreateBookUseCase
+import com.rafaelbaetapena.application.port.`in`.DeleteBookByIdUseCase
 import com.rafaelbaetapena.application.port.`in`.FindAllBooksUseCase
 import com.rafaelbaetapena.application.port.`in`.FindBookByIdUseCase
 import io.micronaut.http.HttpStatus
@@ -17,6 +17,7 @@ import org.mockito.Mock
 import org.mockito.internal.matchers.apachecommons.ReflectionEquals
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.any
+import org.mockito.kotlin.doNothing
 import org.mockito.kotlin.whenever
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -36,6 +37,9 @@ internal class BooksControllerTest {
 
     @Mock
     lateinit var findBookByIdUseCase: FindBookByIdUseCase
+
+    @Mock
+    lateinit var deleteBookByIdUseCase: DeleteBookByIdUseCase
 
     @InjectMocks
     lateinit var booksController: BooksController
@@ -107,5 +111,16 @@ internal class BooksControllerTest {
         assertEquals(HttpStatus.OK, actual.status)
         assertNotNull(actual.body())
         log.info("Book found: $actual")
+    }
+
+    @Test
+    fun `given an existing book id then the book data should be deleted`() {
+
+        val id = UUID.fromString("f680eba8-d0ab-4a95-8ec7-ee6ed4716606")
+
+        doNothing().whenever(deleteBookByIdUseCase).execute(id)
+
+        booksController.deleteById(id)
+        log.info("Deleted book: $id")
     }
 }
