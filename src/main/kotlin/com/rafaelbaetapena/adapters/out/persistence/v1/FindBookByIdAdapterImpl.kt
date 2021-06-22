@@ -15,7 +15,7 @@ import javax.inject.Singleton
 class FindBookByIdAdapterImpl(
         private val bookRepository: BookRepository,
         private val redis: StatefulRedisConnection<String, String>,
-        private val objectMapper: ObjectMapper
+        private val jackson: ObjectMapper
 ): FindBookByIdAdapter {
 
     override fun execute(bookId: UUID): Book? {
@@ -34,7 +34,7 @@ class FindBookByIdAdapterImpl(
     private fun getBookFromCache(cacheKey: String): Book? {
         val cachedBookJson = redis.sync().get(cacheKey) ?: return null
 
-        val cachedBookObj = objectMapper.readValue(cachedBookJson, Book::class.java)
+        val cachedBookObj = jackson.readValue(cachedBookJson, Book::class.java)
 
         log.info("$CLASS_NAME book found in cache with key $cacheKey")
 
@@ -55,7 +55,7 @@ class FindBookByIdAdapterImpl(
     }
 
     private fun setCache(cacheKey: String, book: Book) {
-        val bookAsJson = objectMapper.writeValueAsString(book)
+        val bookAsJson = jackson.writeValueAsString(book)
         val commands = redis.sync()
         commands.multi()
         commands.set(cacheKey, bookAsJson)
