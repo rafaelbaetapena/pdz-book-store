@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "f693ac77-850e-44aa-9d47-f6d84c281c43",
+		"name": "PDZ Book Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "Create a book",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"The Hobbit\",\r\n    \"author\": \"J.R.R.Tolkien\",\r\n    \"publisher\": \"HarperCollins Publishers\",\r\n    \"number_of_pages\": \"400\",\r\n    \"category\": \"FANTASY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find books",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"The Hobbit\",\r\n    \"author\": \"J.R.R.Tolkien\",\r\n    \"publisher\": \"HarperCollins Publishers\",\r\n    \"number_of_pages\": \"400\",\r\n    \"category\": \"FANTASY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/books",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Hobbit",
+									"disabled": true
+								},
+								{
+									"key": "author",
+									"value": "J.R.R.",
+									"disabled": true
+								},
+								{
+									"key": "publisher",
+									"value": null,
+									"disabled": true
+								},
+								{
+									"key": "category",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find book by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"The Hobbit\",\r\n    \"author\": \"J.R.R.Tolkien\",\r\n    \"publisher\": \"HarperCollins Publishers\",\r\n    \"number_of_pages\": \"400\",\r\n    \"category\": \"FANTASY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/books/41a5926f-8625-4deb-8b7f-2e543bf3e044",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books",
+								"41a5926f-8625-4deb-8b7f-2e543bf3e044"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete book by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/books/454b4971-5421-4dae-a34b-29c43daed528",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"books",
+								"454b4971-5421-4dae-a34b-29c43daed528"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
