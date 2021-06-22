@@ -5,5 +5,5 @@ import java.util.*
 
 interface FindBookByIdAdapter {
 
-    fun execute(id: UUID): Book?
+    fun execute(bookId: UUID): Book?
 }
