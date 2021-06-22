@@ -48,6 +48,6 @@ internal class DeleteBookByIdUseCaseImplTest {
         doNothing().whenever(deleteBookByIdAdapter).execute(book)
 
         deleteBookByIdUseCaseImpl.execute(id)
-        log.info("Deleted book: $id")
+        log.info("Deleted book: $book")
     }
 }
