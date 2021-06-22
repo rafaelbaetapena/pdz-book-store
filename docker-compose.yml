@@ -24,6 +24,14 @@ services:
     ports:
       - 6379:6379
 
+  elastic-search:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+
 # permanent storage of data.
 # > docker volume rm postgres_pdz-book-store-data-local
 volumes:
