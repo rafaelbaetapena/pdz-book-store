@@ -3,6 +3,7 @@ services:
 
   db:
     image: postgres
+    container_name: pdz-book-store-micronaut-postgres
     restart: always
     ports:
       - 5432:5432
@@ -15,22 +16,37 @@ services:
 
   adminer:
     image: adminer
+    container_name: pdz-book-store-micronaut-adminer
     restart: always
     ports:
       - 15432:8080
+    depends_on:
+      - db
 
   redis:
     image: redis:6-alpine
+    container_name: pdz-book-store-micronaut-redis
     ports:
       - 6379:6379
 
-  elastic-search:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.1
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.13.2
+    container_name: pdz-book-store-micronaut-elasticsearch
     ports:
       - 9200:9200
       - 9300:9300
     environment:
       - discovery.type=single-node
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.13.2
+    container_name: pdz-book-store-micronaut-image
+    ports:
+      - 5601:5601
+    environment:
+      - ELASTICSEARCH_HOSTS=http://pdz-book-store-micronaut-elasticsearch:9200
+    depends_on:
+      - elasticsearch
 
 # permanent storage of data.
 # > docker volume rm postgres_pdz-book-store-data-local
