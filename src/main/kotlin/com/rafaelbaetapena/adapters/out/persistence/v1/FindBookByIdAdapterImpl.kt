@@ -10,7 +10,6 @@ import org.slf4j.LoggerFactory
 import java.util.*
 import javax.inject.Singleton
 
-
 @Singleton
 class FindBookByIdAdapterImpl(
         private val bookRepository: BookRepository,
