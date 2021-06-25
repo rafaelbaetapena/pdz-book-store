@@ -43,6 +43,12 @@ redis:
   ssl: false
   timeout: 30s
 
+# kafka
+kafka:
+  bootstrap:
+    servers:
+      - localhost:9092
+
 # elasticsearch
 elasticsearch:
   httpHosts: "http://localhost:9200,http://127.0.0.2:9200"
