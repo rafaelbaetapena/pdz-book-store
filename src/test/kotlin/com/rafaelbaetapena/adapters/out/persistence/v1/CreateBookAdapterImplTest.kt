@@ -1,5 +1,6 @@
 package com.rafaelbaetapena.adapters.out.persistence.v1
 
+import com.rafaelbaetapena.adapters.out.kafka.v1.CreateBookLogProducer
 import com.rafaelbaetapena.adapters.out.persistence.v1.entities.BookEntity
 import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookRepository
 import com.rafaelbaetapena.application.domain.Book
@@ -11,6 +12,9 @@ import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.any
+import org.mockito.kotlin.doNothing
+import org.mockito.kotlin.whenever
 import org.slf4j.LoggerFactory
 
 @ExtendWith(MockitoExtension::class)
@@ -22,6 +26,9 @@ internal class CreateBookAdapterImplTest {
 
     @Mock
     lateinit var bookRepository: BookRepository
+
+    @Mock
+    lateinit var createBookLogProducer: CreateBookLogProducer
 
     @InjectMocks
     lateinit var createBookAdapterImpl: CreateBookAdapterImpl
@@ -36,7 +43,9 @@ internal class CreateBookAdapterImplTest {
                 numberOfPages = 400,
                 category = BookCategory.FANTASY)
         val bookEntity = BookEntity(book)
-        Mockito.`when`(bookRepository.save(bookEntity)).thenReturn(bookEntity)
+
+        whenever(bookRepository.save(bookEntity)).thenReturn(bookEntity)
+        doNothing().whenever(createBookLogProducer).send(any(), any())
 
         val actual = createBookAdapterImpl.execute(book)
         assertNotNull(actual)
