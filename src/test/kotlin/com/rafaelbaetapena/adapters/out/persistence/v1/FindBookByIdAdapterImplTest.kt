@@ -1,8 +1,11 @@
 package com.rafaelbaetapena.adapters.out.persistence.v1
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.rafaelbaetapena.adapters.out.persistence.v1.entities.BookEntity
 import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookRepository
 import com.rafaelbaetapena.application.domain.BookCategory
+import io.lettuce.core.api.StatefulRedisConnection
+import io.lettuce.core.api.sync.RedisCommands
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -23,6 +26,15 @@ internal class FindBookByIdAdapterImplTest {
     @Mock
     lateinit var bookRepository: BookRepository
 
+    @Mock
+    lateinit var redis: StatefulRedisConnection<String, String>
+
+    @Mock
+    lateinit var redisCommands: RedisCommands<String, String>
+
+    @Mock
+    lateinit var jackson: ObjectMapper
+
     @InjectMocks
     lateinit var findBookByIdAdapterImpl: FindBookByIdAdapterImpl
 
@@ -37,6 +49,8 @@ internal class FindBookByIdAdapterImplTest {
                 publisher = "HarperCollins Publishers",
                 numberOfPages = 400,
                 category = BookCategory.FANTASY)
+
+        whenever(redis.sync()).thenReturn(redisCommands)
 
         whenever(bookRepository.findById(id)).thenReturn(Optional.of(bookEntity))
 
