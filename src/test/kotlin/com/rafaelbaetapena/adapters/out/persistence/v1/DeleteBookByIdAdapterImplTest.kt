@@ -1,5 +1,6 @@
 package com.rafaelbaetapena.adapters.out.persistence.v1
 
+import com.rafaelbaetapena.adapters.out.kafka.v1.DeleteBookByIdLogProducer
 import com.rafaelbaetapena.adapters.out.persistence.v1.entities.BookEntity
 import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookRepository
 import com.rafaelbaetapena.application.domain.Book
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.InjectMocks
 import org.mockito.Mock
 import org.mockito.junit.jupiter.MockitoExtension
+import org.mockito.kotlin.any
 import org.mockito.kotlin.doNothing
 import org.mockito.kotlin.whenever
 import org.slf4j.LoggerFactory
@@ -25,6 +27,9 @@ internal class DeleteBookByIdAdapterImplTest {
     @Mock
     lateinit var bookRepository: BookRepository
 
+    @Mock
+    lateinit var deleteBookByIdLogProducer: DeleteBookByIdLogProducer
+
     @InjectMocks
     lateinit var deleteBookByIdAdapterImpl: DeleteBookByIdAdapterImpl
 
@@ -39,6 +44,7 @@ internal class DeleteBookByIdAdapterImplTest {
                 category = BookCategory.FANTASY)
 
         doNothing().whenever(bookRepository).delete(BookEntity(book))
+        doNothing().whenever(deleteBookByIdLogProducer).send(any(), any())
 
         deleteBookByIdAdapterImpl.execute(book)
         LOG.info("Deleted book: $book")
