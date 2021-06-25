@@ -7,7 +7,9 @@ import org.elasticsearch.client.RequestOptions
 import org.elasticsearch.client.RestHighLevelClient
 import org.elasticsearch.common.xcontent.XContentType
 import java.util.*
+import javax.inject.Singleton
 
+@Singleton
 class BookProducer(
     private val elasticsearch: RestHighLevelClient,
     private val jackson: ObjectMapper
