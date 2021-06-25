@@ -5,7 +5,6 @@ import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookReposito
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.port.out.FindBookByIdAdapter
 import io.lettuce.core.api.StatefulRedisConnection
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.util.*
 import javax.inject.Singleton

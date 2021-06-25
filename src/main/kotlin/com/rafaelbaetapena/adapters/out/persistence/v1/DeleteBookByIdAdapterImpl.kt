@@ -5,7 +5,6 @@ import com.rafaelbaetapena.adapters.out.persistence.v1.entities.BookEntity
 import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookRepository
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.port.out.DeleteBookByIdAdapter
-import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import javax.inject.Singleton
 
