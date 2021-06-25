@@ -1,9 +1,12 @@
 package com.rafaelbaetapena.adapters.out.persistence.v1
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import com.rafaelbaetapena.adapters.out.persistence.v1.entities.BookEntity
 import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookRepository
 import com.rafaelbaetapena.application.domain.BookCategory
 import com.rafaelbaetapena.application.domain.BookFilter
+import io.lettuce.core.api.StatefulRedisConnection
+import io.lettuce.core.api.sync.RedisCommands
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
@@ -23,6 +26,15 @@ internal class FindAllBooksAdapterImplTest {
 
     @Mock
     lateinit var bookRepository: BookRepository
+
+    @Mock
+    lateinit var redis: StatefulRedisConnection<String, String>
+
+    @Mock
+    lateinit var redisCommands: RedisCommands<String, String>
+
+    @Mock
+    lateinit var jackson: ObjectMapper
 
     @InjectMocks
     lateinit var findAllBooksAdapterImpl: FindAllBooksAdapterImpl
@@ -44,6 +56,8 @@ internal class FindAllBooksAdapterImplTest {
                 publisher = "HarperCollins Publishers",
                 category = BookCategory.FANTASY
         )
+
+        whenever(redis.sync()).thenReturn(redisCommands)
 
         whenever(bookRepository.findByFilters(filters)).thenReturn(listOf(bookEntity))
 
