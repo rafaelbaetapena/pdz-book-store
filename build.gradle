@@ -33,6 +33,7 @@ dependencies {
     implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut.sql:micronaut-hibernate-jpa")
     implementation("io.micronaut.redis:micronaut-redis-lettuce")
+    implementation("io.micronaut.kafka:micronaut-kafka")
     implementation("io.micronaut.elasticsearch:micronaut-elasticsearch")
     implementation("javax.annotation:javax.annotation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
