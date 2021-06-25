@@ -19,7 +19,7 @@ import java.util.*
 internal class DeleteBookByIdUseCaseImplTest {
 
     companion object{
-        private val log = LoggerFactory.getLogger(DeleteBookByIdUseCaseImplTest::class.java)
+        private val LOG = LoggerFactory.getLogger(DeleteBookByIdUseCaseImplTest::class.java)
     }
 
     @Mock
@@ -48,6 +48,6 @@ internal class DeleteBookByIdUseCaseImplTest {
         doNothing().whenever(deleteBookByIdAdapter).execute(book)
 
         deleteBookByIdUseCaseImpl.execute(id)
-        log.info("Deleted book: $book")
+        LOG.info("Deleted book: $book")
     }
 }

@@ -26,7 +26,7 @@ import java.util.*
 internal class BooksControllerTest {
 
     companion object{
-        private val log = LoggerFactory.getLogger(BooksControllerTest::class.java)
+        private val LOG = LoggerFactory.getLogger(BooksControllerTest::class.java)
     }
 
     @Mock
@@ -65,7 +65,7 @@ internal class BooksControllerTest {
         assertTrue(ReflectionEquals(bookResponse).matches(actual.body()))
         assertNotNull(actual.body()?.id)
         assertEquals(bookResponse.id, actual.body()?.id)
-        log.info("Book created: $actual")
+        LOG.info("Book created: $actual")
     }
 
     @Test
@@ -91,7 +91,7 @@ internal class BooksControllerTest {
         assertNotNull(actual.body())
         assertNotNull(actual.body()?.books)
         assertFalse(actual.body()?.books!!.isEmpty())
-        log.info("Book found: $actual")
+        LOG.info("Book found: $actual")
     }
 
     @Test
@@ -110,7 +110,7 @@ internal class BooksControllerTest {
         assertNotNull(actual)
         assertEquals(HttpStatus.OK, actual.status)
         assertNotNull(actual.body())
-        log.info("Book found: $actual")
+        LOG.info("Book found: $actual")
     }
 
     @Test
@@ -121,6 +121,6 @@ internal class BooksControllerTest {
         doNothing().whenever(deleteBookByIdUseCase).execute(id)
 
         booksController.deleteById(id)
-        log.info("Deleted book: $id")
+        LOG.info("Deleted book: $id")
     }
 }

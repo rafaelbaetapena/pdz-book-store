@@ -14,16 +14,16 @@ class FindAllBooksUseCaseImpl(private val findAllBooksAdapter: FindAllBooksAdapt
 
     override fun execute(filters: BookFilter): List<Book> {
 
-        log.info("$CLASS_NAME starting find all books")
+        LOG.info("$CLASS_NAME starting find all books")
 
         val books = findAllBooksAdapter.execute(filters)
 
-        log.info("$CLASS_NAME finalized find all books")
+        LOG.info("$CLASS_NAME finalized find all books")
 
         return books
     }
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(FindAllBooksUseCaseImpl::class.java)
+        private val LOG = LoggerFactory.getLogger(FindAllBooksUseCaseImpl::class.java)
         private val CLASS_NAME = "[${FindAllBooksUseCaseImpl::class.java}]"
     }
 }

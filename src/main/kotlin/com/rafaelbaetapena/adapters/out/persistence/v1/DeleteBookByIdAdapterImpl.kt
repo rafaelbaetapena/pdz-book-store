@@ -16,15 +16,15 @@ class DeleteBookByIdAdapterImpl(
 ): DeleteBookByIdAdapter {
     override fun execute(book: Book) {
 
-        log.info("$CLASS_NAME starting delete book by id")
+        LOG.info("$CLASS_NAME starting delete book by id")
 
         bookRepository.delete(BookEntity(book))
         deleteBookByIdLogProducer.send(book.id, book)
 
-        log.info("$CLASS_NAME finalized delete book by id")
+        LOG.info("$CLASS_NAME finalized delete book by id")
     }
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(DeleteBookByIdAdapterImpl::class.java)
+        private val LOG = LoggerFactory.getLogger(DeleteBookByIdAdapterImpl::class.java)
         private val CLASS_NAME = "[${DeleteBookByIdAdapterImpl::class.java}]"
     }
 }

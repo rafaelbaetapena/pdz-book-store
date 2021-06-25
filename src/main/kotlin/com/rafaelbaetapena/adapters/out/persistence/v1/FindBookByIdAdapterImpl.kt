@@ -19,13 +19,13 @@ class FindBookByIdAdapterImpl(
 
     override fun execute(bookId: UUID): Book? {
 
-        log.info("$CLASS_NAME starting find book by id")
+        LOG.info("$CLASS_NAME starting find book by id")
 
         val cacheKey = "$PREFIX_CACHE_KEY::$bookId"
 
         val book = getBookFromCache(cacheKey) ?: getBookFromDb(cacheKey, bookId)
 
-        log.info("$CLASS_NAME finalized find book by id")
+        LOG.info("$CLASS_NAME finalized find book by id")
 
         return book
     }
@@ -35,7 +35,7 @@ class FindBookByIdAdapterImpl(
 
         val cachedBookObj = jackson.readValue(cachedBookJson, Book::class.java)
 
-        log.info("$CLASS_NAME book found in cache with key $cacheKey")
+        LOG.info("$CLASS_NAME book found in cache with key $cacheKey")
 
         return cachedBookObj
     }
@@ -48,7 +48,7 @@ class FindBookByIdAdapterImpl(
 
         setCache(cacheKey, book)
 
-        log.info("$CLASS_NAME book found in db with id $bookId")
+        LOG.info("$CLASS_NAME book found in db with id $bookId")
 
         return book
     }
@@ -63,7 +63,7 @@ class FindBookByIdAdapterImpl(
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(FindBookByIdAdapterImpl::class.java)
+        private val LOG = LoggerFactory.getLogger(FindBookByIdAdapterImpl::class.java)
         private val CLASS_NAME = "[${FindBookByIdAdapterImpl::class.java}]"
         private const val PREFIX_CACHE_KEY = "FIND_BOOK_BY_ID"
     }

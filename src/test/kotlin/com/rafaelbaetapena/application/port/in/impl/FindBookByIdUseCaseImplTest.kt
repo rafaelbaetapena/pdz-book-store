@@ -18,7 +18,7 @@ import java.util.*
 internal class FindBookByIdUseCaseImplTest{
 
     companion object{
-        private val log = LoggerFactory.getLogger(FindBookByIdUseCaseImplTest::class.java)
+        private val LOG = LoggerFactory.getLogger(FindBookByIdUseCaseImplTest::class.java)
     }
 
     @Mock
@@ -44,7 +44,7 @@ internal class FindBookByIdUseCaseImplTest{
         val actual = findBookByIdUseCaseImpl.execute(id)
         assertNotNull(actual)
         assertEquals(book, actual)
-        log.info("Returned book: $actual")
+        LOG.info("Returned book: $actual")
     }
 
     @Test
@@ -54,6 +54,6 @@ internal class FindBookByIdUseCaseImplTest{
         whenever(findBookByIdAdapter.execute(id)).thenReturn(null)
 
         val assertThrows = assertThrows(FindBookByIdException::class.java) { findBookByIdUseCaseImpl.execute(id) }
-        log.info("Returned book: $assertThrows")
+        LOG.info("Returned book: $assertThrows")
     }
 }

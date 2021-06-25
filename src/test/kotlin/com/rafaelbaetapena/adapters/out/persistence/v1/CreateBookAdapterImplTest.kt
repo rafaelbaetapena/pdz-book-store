@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory
 internal class CreateBookAdapterImplTest {
 
     companion object{
-        private val log = LoggerFactory.getLogger(CreateBookAdapterImplTest::class.java)
+        private val LOG = LoggerFactory.getLogger(CreateBookAdapterImplTest::class.java)
     }
 
     @Mock
@@ -42,6 +42,6 @@ internal class CreateBookAdapterImplTest {
         assertNotNull(actual)
         assertEquals(book, actual)
         assertNotNull(actual.id)
-        log.info("Book created: $actual")
+        LOG.info("Book created: $actual")
     }
 }

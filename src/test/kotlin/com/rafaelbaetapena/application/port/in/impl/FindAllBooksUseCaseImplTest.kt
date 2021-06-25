@@ -18,7 +18,7 @@ import java.util.*
 internal class FindAllBooksUseCaseImplTest {
 
     companion object{
-        private val log = LoggerFactory.getLogger(FindAllBooksUseCaseImplTest::class.java)
+        private val LOG = LoggerFactory.getLogger(FindAllBooksUseCaseImplTest::class.java)
     }
 
     @Mock
@@ -46,6 +46,6 @@ internal class FindAllBooksUseCaseImplTest {
         assertNotNull(actual)
         assertFalse(actual.isEmpty())
         assertEquals(1, actual.size)
-        log.info("Returned books: $actual")
+        LOG.info("Returned books: $actual")
     }
 }

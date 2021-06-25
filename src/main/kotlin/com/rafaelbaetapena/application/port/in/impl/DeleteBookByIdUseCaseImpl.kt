@@ -16,15 +16,15 @@ class DeleteBookByIdUseCaseImpl(
 
     override fun execute(bookId: UUID) {
 
-        log.info("$CLASS_NAME starting delete book by id")
+        LOG.info("$CLASS_NAME starting delete book by id")
 
         val book = findBookByIdUseCase.execute(bookId)
         deleteBookByIdAdapter.execute(book)
 
-        log.info("$CLASS_NAME finalized delete book by id")
+        LOG.info("$CLASS_NAME finalized delete book by id")
     }
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(DeleteBookByIdUseCaseImpl::class.java)
+        private val LOG = LoggerFactory.getLogger(DeleteBookByIdUseCaseImpl::class.java)
         private val CLASS_NAME = "[${DeleteBookByIdUseCaseImpl::class.java}]"
     }
 }

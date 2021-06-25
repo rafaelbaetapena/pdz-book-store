@@ -18,7 +18,7 @@ import java.util.*
 internal class FindAllBooksAdapterImplTest {
 
     companion object{
-        private val log = LoggerFactory.getLogger(FindAllBooksAdapterImplTest::class.java)
+        private val LOG = LoggerFactory.getLogger(FindAllBooksAdapterImplTest::class.java)
     }
 
     @Mock
@@ -51,6 +51,6 @@ internal class FindAllBooksAdapterImplTest {
         assertNotNull(actual)
         assertFalse(actual.isEmpty())
         assertEquals(1, actual.size)
-        log.info("Book found: $actual")
+        LOG.info("Book found: $actual")
     }
 }

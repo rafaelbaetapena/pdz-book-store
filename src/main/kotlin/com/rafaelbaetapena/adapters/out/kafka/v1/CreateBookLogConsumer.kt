@@ -20,12 +20,12 @@ class CreateBookLogConsumer(
 
     @Topic("create-book-log")
     fun receive(book: Book) {
-        log.info("$CLASS_NAME Consuming of created book $book")
+        LOG.info("$CLASS_NAME Consuming of created book $book")
         elasticsearch.send(LOG_INDEX, book)
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(CreateBookLogConsumer::class.java)
+        private val LOG = LoggerFactory.getLogger(CreateBookLogConsumer::class.java)
         private val CLASS_NAME = "[${CreateBookLogConsumer::class.java}]"
         private const val LOG_INDEX = "create-book-log-index"
     }

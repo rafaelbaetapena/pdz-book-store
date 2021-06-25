@@ -27,11 +27,11 @@ class BooksController(
     @Post
     fun create(@Body request: CreateBookRequest): HttpResponse<CreateBookResponse> {
 
-        log.info("$CLASS_NAME starting create book")
+        LOG.info("$CLASS_NAME starting create book")
 
         val createdBook = createBookUseCase.execute(request.toDomain())
 
-        log.info("$CLASS_NAME finalized create book")
+        LOG.info("$CLASS_NAME finalized create book")
 
         return HttpResponse.created(CreateBookResponse(createdBook))
     }
@@ -43,7 +43,7 @@ class BooksController(
             @QueryValue publisher: String?,
             @QueryValue category: BookCategory?): HttpResponse<FindAllBooksResponse> {
 
-        log.info("$CLASS_NAME starting find all books")
+        LOG.info("$CLASS_NAME starting find all books")
 
         val findAllBooksRequest = FindAllBooksRequest(
                 name = name,
@@ -54,7 +54,7 @@ class BooksController(
         val books = findAllBooksUseCase.execute(findAllBooksRequest.toDomain())
                 .map { FindAllBooksResponse.BookResponse(it) }
 
-        log.info("$CLASS_NAME finalized find all books")
+        LOG.info("$CLASS_NAME finalized find all books")
 
         return HttpResponse.ok(FindAllBooksResponse(books))
     }
@@ -62,11 +62,11 @@ class BooksController(
     @Get("/{book_id}")
     fun findById(@PathVariable("book_id") bookId: UUID): HttpResponse<FindBookByIdResponse> {
 
-        log.info("$CLASS_NAME starting find book by id")
+        LOG.info("$CLASS_NAME starting find book by id")
 
         val book = findBookByIdUseCase.execute(bookId)
 
-        log.info("$CLASS_NAME finalized find book by id")
+        LOG.info("$CLASS_NAME finalized find book by id")
 
         return HttpResponse.ok(FindBookByIdResponse(book))
     }
@@ -74,17 +74,17 @@ class BooksController(
     @Delete("/{book_id}")
     fun deleteById(@PathVariable("book_id") bookId: UUID): HttpResponse<String> {
 
-        log.info("$CLASS_NAME starting delete book by id")
+        LOG.info("$CLASS_NAME starting delete book by id")
 
         deleteBookByIdUseCase.execute(bookId)
 
-        log.info("$CLASS_NAME finalized delete book by id")
+        LOG.info("$CLASS_NAME finalized delete book by id")
 
         return HttpResponse.noContent()
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(BooksController::class.java)
+        private val LOG = LoggerFactory.getLogger(BooksController::class.java)
         private val CLASS_NAME = "[${BooksController::class.java}]"
     }
 }

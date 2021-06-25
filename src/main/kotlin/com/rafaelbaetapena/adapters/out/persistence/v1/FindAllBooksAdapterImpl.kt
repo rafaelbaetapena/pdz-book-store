@@ -19,14 +19,14 @@ class FindAllBooksAdapterImpl(
 
     override fun execute(filters: BookFilter): List<Book> {
 
-        log.info("$CLASS_NAME starting find all books")
+        LOG.info("$CLASS_NAME starting find all books")
 
         val cacheKey = "$PREFIX_CACHE_KEY::${filters}"
 
         val books = getBooksListFromCache(cacheKey) ?:
             getBooksListFromDb(cacheKey, filters)
 
-        log.info("$CLASS_NAME finalized find all books")
+        LOG.info("$CLASS_NAME finalized find all books")
 
         return books
     }
@@ -38,7 +38,7 @@ class FindAllBooksAdapterImpl(
                 jackson.typeFactory.constructCollectionType(List::class.java, Book::class.java)
         )
 
-        log.info("$CLASS_NAME books list found in cache with key $cacheKey")
+        LOG.info("$CLASS_NAME books list found in cache with key $cacheKey")
 
         return cachedBooksListObj
     }
@@ -50,7 +50,7 @@ class FindAllBooksAdapterImpl(
 
         setCache(cacheKey, books)
 
-        log.info("$CLASS_NAME books list found in db with filters $filters")
+        LOG.info("$CLASS_NAME books list found in db with filters $filters")
 
         return books
     }
@@ -65,7 +65,7 @@ class FindAllBooksAdapterImpl(
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(FindAllBooksAdapterImpl::class.java)
+        private val LOG = LoggerFactory.getLogger(FindAllBooksAdapterImpl::class.java)
         private val CLASS_NAME = "[${FindAllBooksAdapterImpl::class.java}]"
         private const val PREFIX_CACHE_KEY = "FIND_ALL_BOOKS"
     }

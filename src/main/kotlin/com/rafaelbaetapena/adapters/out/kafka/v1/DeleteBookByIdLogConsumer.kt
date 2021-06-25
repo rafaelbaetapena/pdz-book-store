@@ -20,12 +20,12 @@ class DeleteBookByIdLogConsumer(
 
     @Topic("delete-book-by-id-log")
     fun receive(book: Book) {
-        log.info("$CLASS_NAME Consuming of deleted book by id $book")
+        LOG.info("$CLASS_NAME Consuming of deleted book by id $book")
         elasticsearch.send(LOG_INDEX, book)
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(DeleteBookByIdLogConsumer::class.java)
+        private val LOG = LoggerFactory.getLogger(DeleteBookByIdLogConsumer::class.java)
         private val CLASS_NAME = "[${DeleteBookByIdLogConsumer::class.java}]"
         private const val LOG_INDEX = "delete-book-by-id-log-index"
     }

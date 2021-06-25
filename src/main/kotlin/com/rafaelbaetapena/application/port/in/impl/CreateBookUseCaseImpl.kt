@@ -13,17 +13,17 @@ class CreateBookUseCaseImpl(private val createBookAdapter: CreateBookAdapter):
 
     override fun execute(book: Book): Book {
 
-        log.info("$CLASS_NAME starting create book")
+        LOG.info("$CLASS_NAME starting create book")
 
         val createdBook = createBookAdapter.execute(book)
 
-        log.info("$CLASS_NAME finalized create book")
+        LOG.info("$CLASS_NAME finalized create book")
 
         return createdBook
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(CreateBookUseCaseImpl::class.java)
+        private val LOG = LoggerFactory.getLogger(CreateBookUseCaseImpl::class.java)
         private val CLASS_NAME = "[${CreateBookUseCaseImpl::class.java}]"
     }
 }

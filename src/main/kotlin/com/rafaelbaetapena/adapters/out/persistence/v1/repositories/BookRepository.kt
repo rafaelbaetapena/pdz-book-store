@@ -18,11 +18,11 @@ abstract class BookRepository(private val entityManager: EntityManager) :
     @ReadOnly
     fun findByFilters(filters: BookFilter): List<BookEntity> {
 
-        log.info("$CLASS_NAME starting find all books")
+        LOG.info("$CLASS_NAME starting find all books")
 
         val books = getQueryFindByFilters(filters).resultList
 
-        log.info("$CLASS_NAME finalized find all books")
+        LOG.info("$CLASS_NAME finalized find all books")
 
         return books
     }
@@ -69,13 +69,13 @@ abstract class BookRepository(private val entityManager: EntityManager) :
             qlString = "$qlString  and boo.category = :category"
         }
 
-        log.info("$CLASS_NAME qlString created: $qlString")
+        LOG.info("$CLASS_NAME qlString created: $qlString")
 
         return qlString
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(BookRepository::class.java)
+        private val LOG = LoggerFactory.getLogger(BookRepository::class.java)
         private val CLASS_NAME = "[${BookRepository::class.java}]"
     }
 }

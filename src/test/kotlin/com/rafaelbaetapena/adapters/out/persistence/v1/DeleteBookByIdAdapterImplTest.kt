@@ -19,7 +19,7 @@ import java.util.*
 internal class DeleteBookByIdAdapterImplTest {
 
     companion object{
-        private val log = LoggerFactory.getLogger(DeleteBookByIdAdapterImplTest::class.java)
+        private val LOG = LoggerFactory.getLogger(DeleteBookByIdAdapterImplTest::class.java)
     }
 
     @Mock
@@ -41,6 +41,6 @@ internal class DeleteBookByIdAdapterImplTest {
         doNothing().whenever(bookRepository).delete(BookEntity(book))
 
         deleteBookByIdAdapterImpl.execute(book)
-        log.info("Deleted book: $book")
+        LOG.info("Deleted book: $book")
     }
 }

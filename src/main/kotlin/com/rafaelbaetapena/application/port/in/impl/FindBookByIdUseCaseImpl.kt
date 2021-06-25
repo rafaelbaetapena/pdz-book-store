@@ -16,17 +16,17 @@ class FindBookByIdUseCaseImpl(
 
     override fun execute(id: UUID): Book {
 
-        log.info("$CLASS_NAME starting find book by id")
+        LOG.info("$CLASS_NAME starting find book by id")
 
         val book = findBookByIdAdapter.execute(id) ?: throw FindBookByIdException()
 
-        log.info("$CLASS_NAME finalized find book by id")
+        LOG.info("$CLASS_NAME finalized find book by id")
 
         return book
     }
 
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(FindBookByIdUseCaseImpl::class.java)
+        private val LOG = LoggerFactory.getLogger(FindBookByIdUseCaseImpl::class.java)
         private val CLASS_NAME = "[${FindBookByIdUseCaseImpl::class.java}]"
     }
 }

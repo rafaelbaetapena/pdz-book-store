@@ -17,7 +17,7 @@ import java.util.*
 internal class FindBookByIdAdapterImplTest {
 
     companion object{
-        private val log = LoggerFactory.getLogger(FindBookByIdAdapterImplTest::class.java)
+        private val LOG = LoggerFactory.getLogger(FindBookByIdAdapterImplTest::class.java)
     }
 
     @Mock
@@ -43,6 +43,6 @@ internal class FindBookByIdAdapterImplTest {
         val actual = findBookByIdAdapterImpl.execute(id)
         assertNotNull(actual)
         assertEquals(bookEntity.toDomain(), actual)
-        log.info("Returned book: $actual")
+        LOG.info("Returned book: $actual")
     }
 }

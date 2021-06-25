@@ -17,17 +17,17 @@ class CreateBookAdapterImpl(
 
     override fun execute(book: Book): Book {
 
-        log.info("$CLASS_NAME starting create book")
+        LOG.info("$CLASS_NAME starting create book")
 
         val createdBook = bookRepository.save(BookEntity(book)).toDomain()
         createBookLogProducer.send(book.id, book)
 
-        log.info("$CLASS_NAME finalized create book")
+        LOG.info("$CLASS_NAME finalized create book")
 
         return  createdBook
     }
     companion object {
-        private val log: Logger = LoggerFactory.getLogger(CreateBookAdapterImpl::class.java)
+        private val LOG = LoggerFactory.getLogger(CreateBookAdapterImpl::class.java)
         private val CLASS_NAME = "[${CreateBookAdapterImpl::class.java}]"
     }
 }
