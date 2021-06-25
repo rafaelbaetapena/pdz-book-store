@@ -1,5 +1,6 @@
 package com.rafaelbaetapena.adapters.out.persistence.v1
 
+import com.rafaelbaetapena.adapters.out.kafka.v1.CreateBookLogProducer
 import com.rafaelbaetapena.adapters.out.persistence.v1.entities.BookEntity
 import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookRepository
 import com.rafaelbaetapena.application.domain.Book
@@ -10,7 +11,8 @@ import javax.inject.Singleton
 
 @Singleton
 class CreateBookAdapterImpl(
-    private val bookRepository: BookRepository
+    private val bookRepository: BookRepository,
+    private val createBookLogProducer: CreateBookLogProducer
 ): CreateBookAdapter {
 
     override fun execute(book: Book): Book {
@@ -18,6 +20,7 @@ class CreateBookAdapterImpl(
         log.info("$CLASS_NAME starting create book")
 
         val createdBook = bookRepository.save(BookEntity(book)).toDomain()
+        createBookLogProducer.send(book.id, book)
 
         log.info("$CLASS_NAME finalized create book")
 
