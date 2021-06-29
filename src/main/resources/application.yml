@@ -56,3 +56,11 @@ elasticsearch:
     default:
       connect-timeout: 1000
       socket-timeout: 10000
+
+# book store
+
+book-store:
+  log:
+    index-prefix: "pdz-book-store-micronaut"
+  cache:
+    time-out-seconds: 30

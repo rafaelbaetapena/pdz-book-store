@@ -5,6 +5,7 @@ import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookReposito
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.domain.BookFilter
 import com.rafaelbaetapena.application.port.out.FindAllBooksAdapter
+import com.rafaelbaetapena.configurations.BookStoreCacheConfiguration
 import io.lettuce.core.api.StatefulRedisConnection
 import org.slf4j.LoggerFactory
 import javax.inject.Singleton
@@ -59,7 +60,7 @@ class FindAllBooksAdapterImpl(
         val commands = redis.sync()
         commands.multi()
         commands.set(cacheKey, booksAsJson)
-        commands.expire(cacheKey, 30)
+        commands.expire(cacheKey, BookStoreCacheConfiguration.TIME_OUT_SECONDS)
         commands.exec()
     }
 

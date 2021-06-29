@@ -2,7 +2,7 @@ package com.rafaelbaetapena.adapters.out.kafka.v1
 
 import com.rafaelbaetapena.adapters.out.elasticsearch.v1.BookProducer
 import com.rafaelbaetapena.application.domain.Book
-import com.rafaelbaetapena.configurations.AppConfiguration.Companion.INDEX_PREFIX
+import com.rafaelbaetapena.configurations.BookStoreLogConfiguration.Companion.INDEX_PREFIX
 import io.micronaut.configuration.kafka.annotation.KafkaListener
 import io.micronaut.configuration.kafka.annotation.OffsetReset
 import io.micronaut.configuration.kafka.annotation.Topic
@@ -27,6 +27,6 @@ class DeleteBookByIdLogConsumer(
     companion object {
         private val LOG = LoggerFactory.getLogger(DeleteBookByIdLogConsumer::class.java)
         private val CLASS_NAME = "[${DeleteBookByIdLogConsumer::class.java}]"
-        private const val LOG_INDEX = "$INDEX_PREFIX-delete-book-by-id-log-index"
+        private val LOG_INDEX = "$INDEX_PREFIX-delete-book-by-id-log-index"
     }
 }

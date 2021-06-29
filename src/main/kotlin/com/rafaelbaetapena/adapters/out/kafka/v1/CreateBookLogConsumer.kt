@@ -2,8 +2,7 @@ package com.rafaelbaetapena.adapters.out.kafka.v1
 
 import com.rafaelbaetapena.adapters.out.elasticsearch.v1.BookProducer
 import com.rafaelbaetapena.application.domain.Book
-import com.rafaelbaetapena.configurations.AppConfiguration
-import com.rafaelbaetapena.configurations.AppConfiguration.Companion.INDEX_PREFIX
+import com.rafaelbaetapena.configurations.BookStoreLogConfiguration.Companion.INDEX_PREFIX
 import io.micronaut.configuration.kafka.annotation.KafkaListener
 import io.micronaut.configuration.kafka.annotation.OffsetReset
 import io.micronaut.configuration.kafka.annotation.Topic
@@ -28,6 +27,6 @@ class CreateBookLogConsumer(
     companion object {
         private val LOG = LoggerFactory.getLogger(CreateBookLogConsumer::class.java)
         private val CLASS_NAME = "[${CreateBookLogConsumer::class.java}]"
-        private const val LOG_INDEX = "$INDEX_PREFIX-create-book-log-index"
+        private val LOG_INDEX = "$INDEX_PREFIX-create-book-log-index"
     }
 }

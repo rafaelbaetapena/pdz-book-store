@@ -55,7 +55,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/v1/books",
+							"raw": "http://localhost:8080/v1/books?name=Hobbit&author=J.R.R.",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -68,13 +68,11 @@
 							"query": [
 								{
 									"key": "name",
-									"value": "Hobbit",
-									"disabled": true
+									"value": "Hobbit"
 								},
 								{
 									"key": "author",
-									"value": "J.R.R.",
-									"disabled": true
+									"value": "J.R.R."
 								},
 								{
 									"key": "publisher",
@@ -109,7 +107,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/v1/books/41a5926f-8625-4deb-8b7f-2e543bf3e044",
+							"raw": "http://localhost:8080/v1/books/24aa0883-044c-4b85-9294-9d6652b951d6",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -118,7 +116,7 @@
 							"path": [
 								"v1",
 								"books",
-								"41a5926f-8625-4deb-8b7f-2e543bf3e044"
+								"24aa0883-044c-4b85-9294-9d6652b951d6"
 							]
 						}
 					},
@@ -139,7 +137,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/v1/books/454b4971-5421-4dae-a34b-29c43daed528",
+							"raw": "http://localhost:8080/v1/books/0a480a72-c075-420e-93fa-c6a9a04847a0",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -148,7 +146,27 @@
 							"path": [
 								"v1",
 								"books",
-								"454b4971-5421-4dae-a34b-29c43daed528"
+								"0a480a72-c075-420e-93fa-c6a9a04847a0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/v1/configuration",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"configuration"
 							]
 						}
 					},

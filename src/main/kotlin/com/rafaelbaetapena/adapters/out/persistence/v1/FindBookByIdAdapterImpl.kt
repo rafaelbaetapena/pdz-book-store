@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.rafaelbaetapena.adapters.out.persistence.v1.repositories.BookRepository
 import com.rafaelbaetapena.application.domain.Book
 import com.rafaelbaetapena.application.port.out.FindBookByIdAdapter
+import com.rafaelbaetapena.configurations.BookStoreCacheConfiguration
 import io.lettuce.core.api.StatefulRedisConnection
 import org.slf4j.LoggerFactory
 import java.util.*
@@ -57,7 +58,7 @@ class FindBookByIdAdapterImpl(
         val commands = redis.sync()
         commands.multi()
         commands.set(cacheKey, bookAsJson)
-        commands.expire(cacheKey, 30)
+        commands.expire(cacheKey, BookStoreCacheConfiguration.TIME_OUT_SECONDS)
         commands.exec()
     }
 
